@@ -32,8 +32,10 @@
 
     if ([[pboard types] containsObject: NSPasteboardTypeFileURL])
     {
-        NSArray *files = [pboard propertyListForType: NSPasteboardTypeFileURL];
-        [controller startConversion: [files objectAtIndex: 0]];
+       NSArray* filePaths = [[sender draggingPasteboard] propertyListForType:NSFilenamesPboardType];
+
+        NSLog(@"file path:%@", [filePaths objectAtIndex:0]);
+        [controller startConversion:[filePaths objectAtIndex:0]];
         successful = NO;
     }
 
